@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <v-container fluid>
+      <v-container>
         <v-row>
           <v-col cols="12">
             <h1>尼日利亚低价内购列表</h1>

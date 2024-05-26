@@ -1,18 +1,20 @@
 <template>
   <v-container fluid>
-    <v-row>
+    <v-row justify="center" class="my-custom-row">
       <v-col
         v-for="product in products"
         :key="product.id"
         cols="12"
         sm="6"
         md="4"
-        lg="2"
+        lg="3"
+        class="d-flex justify-center my-custom-col"
       >
-        <ProductItem :product="product" :exchangeRates="exchangeRates" @edit="editProduct" @delete="deleteProduct" @contact="contactProduct" />
+        <div class="product-wrapper">
+          <ProductItem :product="product" :exchangeRates="exchangeRates" @edit="editProduct" @delete="deleteProduct" @contact="contactProduct" />
+        </div>
       </v-col>
     </v-row>
-    
   </v-container>
 </template>
 
@@ -54,7 +56,6 @@ const editProduct = (product) => {
   emit('edit', product)
 }
 
-
 const deleteProduct = async (productId) => {
   try {
     await deleteProductById(productId)
@@ -70,5 +71,19 @@ const contactProduct = (productId) => {
 </script>
 
 <style scoped>
-/* 您的样式代码 */
+.my-custom-row {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.my-custom-col {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+
+.product-wrapper {
+  width: 100%;
+  min-width: 260px;
+  padding: 5px;
+}
 </style>
