@@ -34,8 +34,11 @@ export async function fetchUserPrivileges(uid) {
 
 // 获取商品列表
 export async function fetchProducts(query = {}) {
-  const response = await fetch(`${config.apiBaseUrl}/products?${new URLSearchParams(query)}`, {
-    method: 'GET',
+  console.log(query);
+  console.log(1111);
+  const response = await fetch(`${config.apiBaseUrl}/products/query`, {
+    method: 'POST',
+    body: JSON.stringify(query),
     headers: {
       'Content-Type': 'application/json',
       'uid': config.uid

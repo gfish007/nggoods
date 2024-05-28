@@ -3,7 +3,7 @@
     <v-row justify="end">
       <!-- 商品名称输入框 -->
 
-      <v-text-field  density="comfortable " variant="plain" max-width="200px" v-model="search.name" label="商品名称" />
+      <v-text-field density="comfortable " variant="plain" max-width="200px" v-model="search.name" label="商品名称" />
         <v-select density="comfortable " max-width="200px" v-model="search.reviewStatus" v-if="isPrivileged" variant="plain" :items="reviewStatusOptions" label="审核状态" />
         <v-select density="comfortable " max-width="200px" v-model="search.availabilityStatus" v-if="isPrivileged" variant="plain" :items="availabilityStatusOptions" label="上下架状态" />
         <v-btn-toggle v-model="toggle" variant="plain" divided>

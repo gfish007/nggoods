@@ -10,45 +10,108 @@
       ></v-icon>
       价格仅参考使用
     </v-card-subtitle>
-    <v-card-text class="py-0" style="margin-bottom: 5px;">
-      <v-row align="center" no-gutters>
-        <v-col class="text-right d-none d-md-flex" cols="3">
-          <v-img :src="product.image" :alt="product.name" max-width="70" contain></v-img>
-        </v-col>
-        <v-col class="text-h6" cols="9">
-          <v-card-subtitle>
-            原价 {{ product.originalCurrency }}
-            <v-tooltip activator="parent" location="top">
+    <v-divider style="margin-bottom: 5px;"></v-divider>
+    <div class="d-flex py-3 justify-space-between" style="height: 90px;">
+      <div style="width: 90px; justify-content: center; display: flex; align-items: center;">
+        <span class="icon iconfont" v-html="product.selectedIcon ? product.selectedIcon : '&#xe60d;'"></span>
+      </div>
+      
+      <div style="flex: 1; margin-top: 8px; margin-left: -5px; align-items: center; "  >
+        <v-row>
+          <v-card-subtitle style="font-size: 14px;" class="d-none d-md-flex"> 
+            <spn style="width: 69px;"> 原价 {{ product.originalCurrency }}</spn>
+            
+            <v-tooltip activator="parent" location="top" >
               <template v-slot:activator="{ on, attrs }">
                 <v-icon small class="me-1" color="primary" v-bind="attrs" v-on="on">mdi-information</v-icon>
               </template>
               <span v-html="getExchangeRate(product.originalPrice, product.originalCurrency)"></span>
             </v-tooltip>
-            {{ getCurrencySymbol(product.originalCurrency) }}{{ product.originalPrice }}
           </v-card-subtitle>
-          <v-card-subtitle v-if="product.discountPrice">
-            折扣 {{ product.discountCurrency }}
+          <v-card-subtitle style="font-size: 14px;" class="d-flex d-md-none"> 
+            <spn style="width: 69px;"> 原价 {{ product.originalCurrency }} </spn>
+            <v-menu activator="parent" location="top" offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon small class="me-1" color="primary" v-bind="attrs" v-on="on">mdi-information</v-icon>
+              </template>
+              <v-card>
+                <v-card-text>
+                  <span v-html="getExchangeRate(product.originalPrice, product.originalCurrency)"></span>
+                </v-card-text>
+              </v-card>
+            </v-menu>
+
+          </v-card-subtitle>
+
+          <span style="margin-left: -10px;"> 
+            {{ getCurrencySymbol(product.originalCurrency) }}{{ product.originalPrice }}
+          </span>
+        </v-row>
+        <v-row>
+          <v-card-subtitle style="font-size: 14px;"  class="d-none d-md-flex"> 
+            
+            <spn style="width: 69px;"> 折扣 {{ product.discountCurrency }}</spn>
             <v-tooltip activator="parent" location="top">
               <template v-slot:activator="{ on, attrs }">
                 <v-icon small class="me-1" color="primary" v-bind="attrs" v-on="on">mdi-information</v-icon>
               </template>
               <span v-html="getExchangeRate(product.discountPrice, product.discountCurrency)"></span>
             </v-tooltip>
-            {{ getCurrencySymbol(product.discountCurrency) }}{{ product.discountPrice }}
           </v-card-subtitle>
-          <v-card-subtitle>
-            售价{{ product.saleCurrency }}
+          <v-card-subtitle style="font-size: 14px;" class="d-flex d-md-none"> 
+            <spn style="width: 69px;"> 折扣 {{ product.discountCurrency }}</spn>
+            
+            <v-menu activator="parent" location="top" offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon small class="me-1" color="primary" v-bind="attrs" v-on="on">mdi-information</v-icon>
+              </template>
+              <v-card>
+                <v-card-text>
+                  <span v-html="getExchangeRate(product.discountPrice, product.discountCurrency)"></span>
+                </v-card-text>
+              </v-card>
+            </v-menu>
+          </v-card-subtitle>
+
+          <span style="margin-left: -10px;"> 
+            {{ getCurrencySymbol(product.discountCurrency) }}{{ product.discountPrice }}
+          </span>
+        </v-row>
+        <v-row>
+          <v-card-subtitle style="font-size: 14px;" class="d-none d-md-flex"> 
+            <spn style="width: 69px;"> 售价 {{ product.saleCurrency }}</spn>
+           
             <v-tooltip activator="parent" location="top">
               <template v-slot:activator="{ on, attrs }">
                 <v-icon small class="me-1" color="primary" v-bind="attrs" v-on="on">mdi-information</v-icon>
               </template>
               <span v-html="getExchangeRate(product.salePrice, product.saleCurrency)"></span>
             </v-tooltip>
-            {{ getCurrencySymbol(product.saleCurrency) }}{{ product.salePrice }}
           </v-card-subtitle>
-        </v-col>
-      </v-row>
-    </v-card-text>
+          <v-card-subtitle style="font-size: 14px;" class="d-flex d-md-none"> 
+            <spn style="width: 69px;"> 售价 {{ product.saleCurrency }}</spn>
+            <v-menu activator="parent" location="top" offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon small class="me-1" color="primary" v-bind="attrs" v-on="on">mdi-information</v-icon>
+              </template>
+              <v-card>
+                <v-card-text>
+                  <span v-html="getExchangeRate(product.salePrice, product.saleCurrency)"></span>
+                </v-card-text>
+              </v-card>
+              
+            </v-menu>
+          </v-card-subtitle>
+          <span style="margin-left: -10px;"> 
+            {{ getCurrencySymbol(product.saleCurrency) }}{{ product.salePrice }}
+          </span>
+        </v-row>
+        
+      </div>
+    </div>
+
+
+
     <v-divider></v-divider>
     <v-card-actions class="justify-end">
       <v-btn v-if="isPrivileged" icon @click.stop="editProduct(product)">
@@ -85,6 +148,7 @@ import MarkdownDialog from '~/components/MarkdownDialog.vue'
 const props = defineProps({
   product: Object,
   exchangeRates: Object,
+
 })
 
 const emit = defineEmits(['edit', 'delete', 'contact'])
@@ -174,5 +238,13 @@ const getExchangeRate = (price, currency) => {
 }
 .v-avatar {
   flex-shrink: 0;
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 80px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>

@@ -1,0 +1,101 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4562477 */
+  /* Color fonts */
+  src: 
+       url('iconfont.woff2?t=1716805107125') format('woff2'),
+       url('iconfont.woff?t=1716805107125') format('woff'),
+       url('iconfont.ttf?t=1716805107125') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-telegram:before {
+  content: "\e60f";
+}
+
+.icon-qqhuiyuan:before {
+  content: "\e601";
+}
+
+.icon-Discord:before {
+  content: "\e6c2";
+}
+
+.icon-morentubiao:before {
+  content: "\e60d";
+}
+
+.icon-youtobe:before {
+  content: "\e60e";
+}
+
+.icon-wps:before {
+  content: "\e671";
+}
+
+.icon-tengxunshipin:before {
+  content: "\e60a";
+}
+
+.icon-app:before {
+  content: "\e6d7";
+}
+
+.icon-weibo:before {
+  content: "\e666";
+}
+
+.icon-spotify:before {
+  content: "\ea04";
+}
+
+.icon-xiaohuojian:before {
+  content: "\e637";
+}
+
+.icon-baiduwangpan:before {
+  content: "\e612";
+}
+
+.icon-aliyunpan:before {
+  content: "\e695";
+}
+
+.icon-youku:before {
+  content: "\e602";
+}
+
+.icon-bilibili:before {
+  content: "\e606";
+}
+
+.icon-wangyiyunyinle:before {
+  content: "\e60b";
+}
+
+.icon-a-jingdong2x:before {
+  content: "\e60c";
+}
+
+.icon-openai:before {
+  content: "\e600";
+}
+
+.icon-Claude-v1:before {
+  content: "\e71c";
+}
+
+.icon-QQyinle:before {
+  content: "\e614";
+}
+
+.icon-weixindushu:before {
+  content: "\e607";
+}
+

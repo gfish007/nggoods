@@ -11,7 +11,7 @@
         class="d-flex justify-center my-custom-col"
       >
         <div class="product-wrapper">
-          <ProductItem :product="product" :exchangeRates="exchangeRates" @edit="editProduct" @delete="deleteProduct" @contact="contactProduct" />
+          <ProductItem :product="product" :exchangeRates="exchangeRates" @changeLoading="changeLoading" @edit="editProduct" @delete="deleteProduct" @contact="contactProduct" />
         </div>
       </v-col>
     </v-row>
@@ -29,7 +29,7 @@ const products = ref([])
 const exchangeRates = ref({})
 const selectedProduct = ref(null)
 
-const emit = defineEmits(['edit', 'delete'])
+const emit = defineEmits(['edit', 'delete', 'loading'])
 
 const loadProducts = async () => {
   try {
@@ -56,12 +56,19 @@ const editProduct = (product) => {
   emit('edit', product)
 }
 
+const changeLoading = (value) => {
+  emit('loading', value)
+}
+
 const deleteProduct = async (productId) => {
+  changeLoading(true)
   try {
     await deleteProductById(productId)
     await loadProducts()
   } catch (error) {
     console.error('Failed to delete product:', error)
+  } finally{
+    changeLoading(false)
   }
 }
 
@@ -83,7 +90,7 @@ const contactProduct = (productId) => {
 
 .product-wrapper {
   width: 100%;
-  min-width: 260px;
+  min-width: 265px;
   padding: 5px;
 }
 </style>
